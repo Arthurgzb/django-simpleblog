@@ -25,6 +25,10 @@ class User(models.Model):
         self.comment_num -= 1
         self.save(update_fields=['comment_num'])
 
+    class Meta:
+        verbose_name = '用户'  # 指定后台显示模型名称
+        verbose_name_plural = '用户'  # 指定后台显示模型复数名称
+        db_table = "blog_user"  # 数据库表名
 #---------------------------------文章评论---------------------------------------
 class ArticleComment(models.Model):
     body = models.TextField()
@@ -48,9 +52,8 @@ class ArticleComment(models.Model):
 
 #---------------------------------博客文章标签---------------------------------------
 class Tag(models.Model):
-    name = models.CharField(verbose_name='标签名', max_length=64)
-
-    # 使对象在后台显示更友好
+    name = models.CharField(verbose_name='标签名', max_length=64)    
+# 使对象在后台显示更友好
     def __str__(self):
         return self.name
 
@@ -59,7 +62,6 @@ class Tag(models.Model):
         verbose_name = '标签名称'  # 指定后台显示模型名称
         verbose_name_plural = '标签列表'  # 指定后台显示模型复数名称
         db_table = "tag"  # 数据库表名
-
 #---------------------------------博客文章分类---------------------------------------
 class Category(models.Model):
     name = models.CharField(verbose_name='类别名称', max_length=64)
